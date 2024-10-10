@@ -8,7 +8,7 @@ const path = require('path');
 
 const filePath404Page = path.resolve(__dirname, '../client/404.html');
 
-const indexRouter = require('./routes/index.js');
+const indexRouter = require('../client/admin.html');
 
 // import routes (put this near top)
 // ...

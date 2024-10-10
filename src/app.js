@@ -7,7 +7,6 @@ const app = express();
 const path = require('path');
 
 const filePath404Page = path.resolve(__dirname, '../client/404.html');
-const filePathAdminPage = path.resolve(__dirname, '../client/admin.html');
 
 const indexRouter = require('./routes/index.js');
 const adminRouter = require('../client/admin.html');

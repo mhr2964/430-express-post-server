@@ -21,7 +21,7 @@ app.use(express.static('client'));
 // put this right AFTER `app.use(express.static('client'));`
 app.use(express.json());
 app.use('/', indexRouter);
-app.use('/', adminRouter);
+app.use('/admin', adminRouter);
 
 // // .all refers to ALL http methods - GET, POST, DELETE etc
 // // note .status(404) and method chaining

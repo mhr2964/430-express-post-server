@@ -9,26 +9,22 @@ const { quotes } = data; // object destructuring
 // PUBLIC METHODS
 const getAllQuotes = () => quotes;
 
-const randomQuote = () => {
-    return quotes[Math.floor(Math.random() * quotes.length)];
-};
+const randomQuote = () => quotes[Math.floor(Math.random() * quotes.length)];
 
-const recentQuote = () => {
-    return quotes[quotes.length - 1];
-}
+const recentQuote = () => quotes[quotes.length - 1];
 
 const getQuoteById = (id = undefined) => {
-    if (id == undefined){return getAllQuotes();}
-    const checkID = (quote) => {
-        return quote.id == id;
-      };
-      let quote;
-      if (!(quote = quotes.find(checkID))){
-        console.log(quote);
-        quote = undefined;
-        console.log(quote);
-      }
-      return quote;
+  if (id === undefined) { return getAllQuotes(); }
+  const checkID = (quote) => quote.id === id;
+  let quote = quotes.find(checkID);
+  if (!quote) {
+    console.log(quote);
+    quote = undefined;
+    console.log(quote);
+  }
+  return quote;
 };
 
-module.exports = { getAllQuotes, randomQuote, recentQuote, getQuoteById };
+module.exports = {
+  getAllQuotes, randomQuote, recentQuote, getQuoteById,
+};

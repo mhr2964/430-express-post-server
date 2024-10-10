@@ -1,12 +1,13 @@
 const express = require('express');
 const db = require('../db.js');
+
 const router = express.Router();
 
 // just 3 quotes for now
 const data = db.getAllQuotes();
 
 router.get('/', (req, res) => {
-  const {id} = req.query;
+  const { id } = req.query;
   res.json(db.getQuoteById(id));
 });
 
@@ -19,7 +20,7 @@ router.get('/recent', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
   res.send(db.getQuoteById(id));
 });
 

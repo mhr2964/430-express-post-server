@@ -17,6 +17,8 @@ const apiRouter = require('./routes/api.js');
 
 // put this AFTER we instantiate `app`, and BEFORE our GET and POST routes
 app.use(express.static('client'));
+// put this right AFTER `app.use(express.static('client'));`
+app.use(express.json());
 app.use('/', indexRouter);
 
 // // .all refers to ALL http methods - GET, POST, DELETE etc

@@ -10,6 +10,7 @@ const filePath404Page = path.resolve(__dirname, '../client/404.html');
 const filePathAdminPage = path.resolve(__dirname, '../client/admin.html');
 
 const indexRouter = require('./routes/index.js');
+const adminRouter = require('../client/admin.html');
 
 // import routes (put this near top)
 // ...
@@ -21,7 +22,7 @@ app.use(express.static('client'));
 // put this right AFTER `app.use(express.static('client'));`
 app.use(express.json());
 app.use('/', indexRouter);
-app.use('/admin', filePathAdminPage);
+app.use('/', adminRouter);
 
 // // .all refers to ALL http methods - GET, POST, DELETE etc
 // // note .status(404) and method chaining

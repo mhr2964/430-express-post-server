@@ -3,8 +3,8 @@ const db = require('../db.js');
 
 const router = express.Router();
 
-// just 3 quotes for now
-const data = db.getAllQuotes();
+// // just 3 quotes for now
+// const data = db.getAllQuotes();
 
 router.get('/', (req, res) => {
   const { id } = req.query;

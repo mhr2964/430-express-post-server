@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rich Client!</title>
+
+</head>
+<body>
+
+<h1>"Rich" Client for <i>Simple HTTP Server</i></h1>
+<h2>View the "Hello" Message</h2>
+<p><button id="btn-hello">See contents of <kbd>/helloJSON</kbd></button></p>
+<div id="output-hello">???</div>
+
+<hr>
+
+<h2>View the "Current Time" Message</h2>
+
+<p><button id="btn-time">See contents of <kbd>/timeJSON</kbd></button></p>
+<div id="output-time">???</div>
+
+<hr>
+
+<h2>View Random Quote</h2>
+
+<p><button id="btn-quoteRandom">See random quote</button></p>
+<div id="output-quoteRandom">???</div>
+
+<hr>
+
+<h2>View Recent Quote</h2>
+
+<p><button id="btn-quoteRecent">See recent quote</button></p>
+<div id="output-quoteRecent">???</div>
+
+<hr>
+
+<h2>A Dank Meme ...</h2>
+
+<img src="/spongegar.png" width="200" />
+
+</body>
+<script>
+const getJsonFetch = async (url, callback) => {
+  let json;
+  try{
+    const response = await fetch(url,{
+      method: "GET",
+      headers: {
+        "Accept": "application/json"
+      }
+    });
+    json = await response.json();
+  }
+  catch(error){
+    console.log("ERROR:", error);
+    json = {author: `Can't parse data file '${url}'`};
+  }
+  callback(json);
+};
+
+initButton = (buttonID, outputID, url, keys) => {
+  const btn = document.querySelector("#" + buttonID);
+  const output = document.querySelector("#" + outputID);
+
+  const callback = json => {
+    output.innerHTML = "";
+    for (let i = 0; i < keys.length; i++){
+      output.innerHTML += json[keys[i]] || `No <kbd>.${keys[i]}</kbd> value found!`;
+      output.innerHTML += (i < keys.length - 1) ? "<br>" : "";
+    }
+  };
+
+  btn.onclick = () => getJsonFetch(url, callback);
+};
+
+initButton("btn-hello", "output-hello", "/api/helloJSON", ["message"]);
+initButton("btn-time", "output-time", "/api/timeJSON", ["time"]);
+initButton("btn-quoteRandom", "output-quoteRandom", "/quotes/random", ["content", "author"]);
+initButton("btn-quoteRecent", "output-quoteRecent", "/quotes/recent", ["content", "author"]);
+</script>
+</html>
